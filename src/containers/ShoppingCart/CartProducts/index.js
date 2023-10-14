@@ -3,6 +3,8 @@ import { useState } from "react";
 import "../style.css";
 import { calculateTotal } from "../shopping-cart-utils";
 import { formatCurrency } from "../../../utils/common-utils";
+import FlexItemContent from "../../../components/FlexItemContent";
+import ItemsQuantityView from "./ItemsQuantityView";
 
 const CartProducts = ({ products }) => {
   const [cartProducts, setCartProducts] = useState(products);
@@ -10,25 +12,36 @@ const CartProducts = ({ products }) => {
   return (
     <div className="cart-products-container">
       <div className="cart-products">
-        {cartProducts.map((item) => {
+        {cartProducts.map((product) => {
+          const { id, img, name, price } = product;
           return (
-            <div className="flex gap-2 mb-20 full-width" key={item.id}>
+            <div className="flex gap-2 full-width cart-product-item" key={id}>
               <div className="image-container">
-                <img src={item.img} alt="itemImage" />
+                <img src={img} alt="itemImage" />
               </div>
+
               <div className="full-width">
-                <p className="weight-500">{item.name}</p>
-                <div className="flex align-center justify-between">
-                  <div>Price</div>
-                  <div>{formatCurrency(item.price, "PKR")}</div>
-                </div>
+                <p className="weight-500">{name}</p>
+
+                <FlexItemContent
+                  label={"Product Price"}
+                  content={formatCurrency(price, "PKR")}
+                />
+
+                <div className="mt-20 mb-20 border-divider" />
+
+                <ItemsQuantityView
+                  product={product}
+                  cartProducts={cartProducts}
+                  updateCart={setCartProducts}
+                />
               </div>
             </div>
           );
         })}
       </div>
 
-      <div className="mt-20 border-divider" />
+      <div className="border-divider" />
 
       <div className="cart-total-view flex align-center justify-between">
         <div>Total</div>

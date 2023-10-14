@@ -24,6 +24,12 @@
     gap: 20px
 }
 
+.flex-item-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-flow: wrap;
+}
 
 .border-divider {
   border: 0.5px solid #e1e4e7;
@@ -39,3 +45,13 @@
   margin-bottom: 20px;
 }
 
+
+/* Other CSS*/
+.pointer {
+  cursor: pointer;
+}
+
+.disabled {
+  cursor: no-drop;
+  pointer-events: none;
+}

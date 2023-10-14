@@ -1,0 +1,23 @@
+
+.quantity-buttons {
+  gap: 4px;
+  display: flex;
+  align-items: center;
+}
+
+.quantity-box {
+  padding: 3px 24px;
+  background-color: #f7f7f9;
+  border-radius: var(--small-border-radius);
+}
+
+.quantity-price-view {
+  line-height: 24px;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+}
+
+.disbled-icon {
+  opacity: .5;
+}

@@ -39,6 +39,7 @@ const CartProducts = ({ products }) => {
       />
 
       <div className="cart-products">
+        <div className="cart-items-container">
         {cartItems.map((product) => {
           const { id, img, name, price, quantity, colour } = product;
           return (
@@ -65,7 +66,7 @@ const CartProducts = ({ products }) => {
 
                 <FlexItemContent
                   className={"mb-10"}
-                  label={"Product Price"}
+                  label={"Price"}
                   content={formatCurrency(price, "PKR")}
                 />
 
@@ -82,13 +83,14 @@ const CartProducts = ({ products }) => {
             </div>
           );
         })}
+        </div>
 
         <div className="border-divider" />
 
         <FlexItemContent
           label={"Total"}
           labelClass={"primary-black"}
-          className={"cart-total-view mt-20"}
+          className={"cart-total-view"}
           content={formatCurrency(calculateTotal(cartProducts), "PKR")}
         />
       </div>

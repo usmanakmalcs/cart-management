@@ -1,5 +1,4 @@
-import { useState } from "react";
-
+import { Fragment, useState } from "react";
 
 import {
   applyColorFilter,
@@ -32,68 +31,77 @@ const CartProducts = ({ products }) => {
 
   return (
     <div className="cart-products-container">
-      <ColorFilter
-        options={colorFilterOptions(cartProducts)}
-        defaultValue={colorFilter}
-        onChange={onChangeFilter}
-      />
+      {!cartProducts.length ? (
+        <div> No Products Available </div>
+      ) : (
+        <Fragment>
+          <ColorFilter
+            options={colorFilterOptions(cartProducts)}
+            defaultValue={colorFilter}
+            onChange={onChangeFilter}
+          />
 
-      <div className="cart-products">
-        <div className="cart-items-container">
-        {cartItems.map((product) => {
-          const { id, img, name, price, quantity, colour } = product;
-          return (
-            <div className="flex gap-2 full-width cart-product-item" key={id}>
-              <div className="image-container">
-                <img src={img} alt="itemImage" />
-              </div>
+          <div className="cart-products">
+            <div className="cart-items-container">
+              {cartItems.map((product) => {
+                const { id, img, name, price, quantity, colour } = product;
+                return (
+                  <div
+                    className="flex gap-2 full-width cart-product-item"
+                    key={id}
+                  >
+                    <div className="image-container">
+                      <img src={img} alt="itemImage" />
+                    </div>
 
-              <div className="full-width">
-                <FlexItemContent
-                  label={name}
-                  className={"mb-20"}
-                  labelClass="weight-500 text-base primary-black"
-                  content={
-                    quantity > 0 && (
-                      <DeleteCart
+                    <div className="full-width">
+                      <FlexItemContent
+                        label={name}
+                        className={"mb-20"}
+                        labelClass="weight-500 text-base primary-black"
+                        content={
+                          quantity > 0 && (
+                            <DeleteCart
+                              product={product}
+                              updateCart={onUpdateCart}
+                              cartProducts={cartItems}
+                            />
+                          )
+                        }
+                      />
+
+                      <FlexItemContent
+                        className={"mb-10"}
+                        label={"Price"}
+                        content={formatCurrency(price, "PKR")}
+                      />
+
+                      <FlexItemContent label={"Color"} content={colour} />
+
+                      <div className="mt-20 mb-20 border-divider" />
+
+                      <ItemsQuantityView
                         product={product}
                         updateCart={onUpdateCart}
                         cartProducts={cartItems}
                       />
-                    )
-                  }
-                />
-
-                <FlexItemContent
-                  className={"mb-10"}
-                  label={"Price"}
-                  content={formatCurrency(price, "PKR")}
-                />
-
-                <FlexItemContent label={"Color"} content={colour} />
-
-                <div className="mt-20 mb-20 border-divider" />
-
-                <ItemsQuantityView
-                  product={product}
-                  updateCart={onUpdateCart}
-                  cartProducts={cartItems}
-                />
-              </div>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
-          );
-        })}
-        </div>
 
-        <div className="border-divider" />
+            <div className="border-divider" />
 
-        <FlexItemContent
-          label={"Total"}
-          labelClass={"primary-black"}
-          className={"cart-total-view"}
-          content={formatCurrency(calculateTotal(cartProducts), "PKR")}
-        />
-      </div>
+            <FlexItemContent
+              label={"Total"}
+              labelClass={"primary-black"}
+              className={"cart-total-view"}
+              content={formatCurrency(calculateTotal(cartProducts), "PKR")}
+            />
+          </div>
+        </Fragment>
+      )}
     </div>
   );
 };

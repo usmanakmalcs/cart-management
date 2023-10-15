@@ -1,5 +1,12 @@
 .shopping-cart-container {
   padding: 20px;
+  width: 50%;
+  position: relative;
+}
+
+.shopping-cart-container .loader {
+  display: grid;
+  place-items: center;
 }
 
 .shopping-cart-container .cart-page-title {
@@ -14,7 +21,7 @@
   border-radius: 16px;
   background-color: #fff;
 
-  width: 50%;
+  width: 100%;
 }
 
 .cart-products-container .image-container {
@@ -60,7 +67,7 @@
 }
 
 @media screen and (max-width: 768px) {
-  .cart-products-container {
+  .shopping-cart-container {
     width: 100%;
   }
 }

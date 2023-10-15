@@ -28,7 +28,7 @@ const CartProducts = ({ products }) => {
     setCartProducts(cartItems);
   };
 
-  const cartItems = applyColorFilter(colorFilter, products);
+  const cartItems = applyColorFilter(colorFilter, cartProducts);
 
   return (
     <div className="cart-products-container">

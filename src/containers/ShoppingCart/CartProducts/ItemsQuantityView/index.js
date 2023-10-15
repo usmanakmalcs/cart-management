@@ -55,7 +55,7 @@ const ItemsQuantityView = ({ product, updateCart, cartProducts }) => {
         <Icon
           type={"minus"}
           className={quantity ? "pointer" : "disabled"}
-          onClick={() => onChangeQuantity("minus")}
+          onClick={() => quantity && onChangeQuantity("minus")}
         />
 
         <div className="quantity-box font-14-normal-400-lh-18">

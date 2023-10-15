@@ -1,11 +1,10 @@
-import { Spin } from 'antd';
+import { Spin } from "antd";
 
 import useFetch from "../../hooks/useFetch";
 import CartProducts from "./CartProducts";
 import { prepareProducts } from "./shopping-cart-utils";
 
 const ShoppingCart = () => {
-
   const {
     data: products,
     loading,
@@ -16,8 +15,10 @@ const ShoppingCart = () => {
 
   return (
     <div className="shopping-cart-container">
-      <div className="cart-page-title mb-20">My Cart</div>
-      {loading && <Spin className='loader'/>}
+      <div className="cart-page-title mb-20" data-testid="heading">
+        My Cart
+      </div>
+      {loading && <div>Fetching Products...</div>}
       {products && <CartProducts products={prepareProducts(products)} />}
       {error && <p>{error}</p>}
     </div>

@@ -1,0 +1,94 @@
+/* Close Icon*/
+
+.custom-ant-modal .ant-modal-close {
+  top: -40px;
+  right: 8px;
+}
+
+.custom-ant-modal .ant-modal-close .ant-modal-close-x {
+  background-color: #a6adb6;
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+}
+
+.custom-ant-modal .ant-modal-close .ant-modal-close-x span {
+  height: 10px;
+  position: relative;
+
+  top: 10px;
+}
+
+.custom-ant-modal .ant-modal-close svg {
+  fill: #fff;
+  stroke-width: 2em;
+}
+
+/***** Modal Header ******/
+
+.custom-ant-modal .ant-modal-header {
+  background-color: unset;
+  border-radius: unset;
+  padding: unset;
+  padding-bottom: 16px;
+  text-align: center;
+  border-bottom: 0.5px solid #e8e8e8;
+}
+
+.borderless-header .ant-modal-header {
+  border-bottom: unset;
+}
+
+.custom-ant-modal .ant-modal-header .ant-modal-title {
+  font-style: normal;
+  font-weight: 500;
+  font-size: var(--base-lg-font);
+  line-height: 22px;
+
+  text-align: center;
+  text-transform: capitalize;
+}
+
+/** Modal Content ***/
+
+.custom-ant-modal .ant-modal-content {
+  border-radius:16px !important;
+  padding: 18px 24px 24px;
+}
+
+.custom-ant-modal .ant-modal-body {
+  padding: unset;
+}
+
+/** Modal Icon - Confirmation or Information or Message */
+
+.modal-icon {
+  margin-bottom: 18px;
+}
+
+/******* Centered Text ******/
+
+.modal-centered-text {
+  margin-left: auto;
+  margin-right: auto;
+
+  font-style: normal;
+  font-size: var(--base-font);
+  line-height: 28px;
+
+  text-align: center;
+
+  color: var(--black-color);
+}
+
+@media screen and (min-width: 576px) {
+  .modal-centered-text {
+    width: 70%;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .modal-centered-text {
+    width: 100%;
+  }
+}

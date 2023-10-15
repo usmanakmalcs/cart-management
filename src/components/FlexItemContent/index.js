@@ -1,11 +1,22 @@
-import React from 'react'
-import './style.css'
+import React from "react";
 
-const FlexItemContent = ({label, content}) => {
-    return <div className="flex align-center justify-between flex-item-content">
-        <div>{label}</div>
-        <div>{content}</div>
+const FlexItemContent = ({
+  label,
+  labelClass,
+  content,
+  contentClass,
+  className,
+}) => {
+  return (
+    <div className={`flex-item-between flex-item-content ${className || ""}`}>
+      <div className={labelClass || "text-sm secondary-color"}>{label}</div>
+      {content && (
+        <div className={contentClass || "text-sm primary-black"}>
+          {content}
+        </div>
+      )}
     </div>
-}
+  );
+};
 
-export default FlexItemContent
+export default FlexItemContent;

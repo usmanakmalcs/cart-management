@@ -14,3 +14,10 @@ export const formatCurrency = (amount, currency) => {
 export const makeDeepCopy = (detail) => {
   return JSON.parse(JSON.stringify(detail));
 };
+
+
+export const capitalize = (word) => {
+  const lowercase = word.toLowerCase();
+
+  return lowercase.charAt(0).toUpperCase() + lowercase.slice(1);
+};

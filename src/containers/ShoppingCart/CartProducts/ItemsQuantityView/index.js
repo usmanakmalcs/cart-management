@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Icon from "../../../../components/Icon";
 import { formatCurrency, makeDeepCopy } from "../../../../utils/common-utils";
 
@@ -9,14 +9,21 @@ let timeoutRef = null;
 const ItemsQuantityView = ({ product, updateCart, cartProducts }) => {
   const { quantity, price } = product;
   const [productQuantity, setProductQuantity] = useState(quantity);
+
+  useEffect(() => {
+    if (product.quantity !== productQuantity) {
+      setProductQuantity(product.quantity);
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [product]);
+
   const quantityRef = useRef(productQuantity);
 
   const updateCartDetails = () => {
     timeoutRef = setTimeout(() => {
       const cartItems = makeDeepCopy(cartProducts);
-      const productIndex = cartItems.findIndex(
-        ({ id }) => id === product.id
-      );
+      const productIndex = cartItems.findIndex(({ id }) => id === product.id);
 
       cartItems[productIndex].quantity = quantityRef.current;
 
@@ -25,6 +32,7 @@ const ItemsQuantityView = ({ product, updateCart, cartProducts }) => {
       timeoutRef = null;
     }, 400);
   };
+
   const onChangeQuantity = (action) => {
     const itemQuantity =
       action === "minus" ? productQuantity - 1 : productQuantity + 1;

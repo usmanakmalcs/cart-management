@@ -1,38 +1,92 @@
-.App {
-  text-align: center;
+:root {
+  
+  --small-font: 0.875rem; /*14px*/
+  --base-font: 1rem; /*16px*/
+  --base-lg-font: 1.125rem; /*18px*/
+
+  --secondary-color: #788192;
+  --primary-black-color: #0a0017;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* FontClasses*/
+
+.text-base {
+  font-size: var(--base-font);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.text-sm {
+  font-size: var(--small-font);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.primary-black {
+  color: var(--primary-black-color);
+}
+
+.secondary-color {
+  color: var(--secondary-color);
+}
+
+.full-width {
+    width: 100%;
+}
+
+.weight-500 {
+    font-weight: 500;
+}
+
+/* Flex Classes*/
+.flex {
   display: flex;
-  flex-direction: column;
+}
+
+.align-center {
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.justify-between {
+    justify-content: space-between;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.justify-end {
+    justify-content: flex-end;
+}
+
+.gap-2 {
+    gap: 20px
+}
+
+.flex-item-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-flow: wrap;
+}
+
+.border-divider {
+  border: 0.5px solid #e1e4e7;
+  border-radius: 4px;
+}
+
+/* Margins */
+.mb-10 {
+  margin-bottom: 10px;
+}
+
+.mt-20 {
+  margin-top: 20px;
+}
+
+.mb-20 {
+  margin-bottom: 20px;
+}
+
+
+/* Other CSS*/
+.pointer {
+  cursor: pointer;
+}
+
+.disabled {
+  cursor: no-drop;
+  pointer-events: none;
 }

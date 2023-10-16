@@ -1,8 +1,18 @@
+import React, { FC } from "react";
+
 import { Select } from "antd";
 import "./style.css";
+import { FilterSelectType } from "./filter-select-types";
+
 const { Option } = Select;
 
-const FilterSelect = ({ filterClass, options, onChange, defaultValue, selectClass }) => {
+const FilterSelect: FC<FilterSelectType> = ({
+  filterClass,
+  options,
+  onChange,
+  defaultValue,
+  selectClass,
+}) => {
   return (
     <div className={`filter-select ${filterClass}`}>
       {options.length ? (

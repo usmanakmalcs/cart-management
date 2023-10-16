@@ -1,4 +1,5 @@
 
+import React from "react";
 import ShoppingCartPage from "./pages/ShoppingCart";
 import './App.css';
 

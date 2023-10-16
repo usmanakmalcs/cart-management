@@ -1,10 +1,10 @@
-import { Spin } from "antd";
+import React, { FC } from "react";
 
 import useFetch from "../../hooks/useFetch";
 import CartProducts from "./CartProducts";
 import { prepareProducts } from "./shopping-cart-utils";
 
-const ShoppingCart = () => {
+const ShoppingCart:FC = () => {
   const {
     data: products,
     loading,

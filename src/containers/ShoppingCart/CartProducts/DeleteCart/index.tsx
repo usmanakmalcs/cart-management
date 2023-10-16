@@ -1,9 +1,20 @@
-import { Fragment, useState } from "react";
+import React, { FC, Fragment, useState } from "react";
 import Icon from "../../../../components/Icon";
 import { makeDeepCopy } from "../../../../utils/common-utils";
 import ConfirmationModal from "../../../../components/AntdModal/ConfirmationModal";
+import { ProductItemType } from "../../shopping-cart-types";
 
-const DeleteCart = ({ product, cartProducts, updateCart }) => {
+type DeleteCartType = {
+  product: ProductItemType;
+  cartProducts: Array<ProductItemType>;
+  updateCart: (value: Array<ProductItemType>) => void;
+};
+
+const DeleteCart: FC<DeleteCartType> = ({
+  product,
+  cartProducts,
+  updateCart,
+}) => {
   const [modal, setModal] = useState(false);
 
   const toggleModal = () => {
@@ -12,7 +23,9 @@ const DeleteCart = ({ product, cartProducts, updateCart }) => {
 
   const onDeleteProduct = () => {
     const cartItems = makeDeepCopy(cartProducts);
-    const productIndex = cartItems.findIndex(({ id }) => id === product.id);
+    const productIndex = cartItems.findIndex(
+      (item: ProductItemType) => item.id === product.id
+    );
     cartItems[productIndex].quantity = 0;
 
     updateCart(cartItems);
@@ -25,11 +38,11 @@ const DeleteCart = ({ product, cartProducts, updateCart }) => {
       {modal && (
         <ConfirmationModal
           open={true}
-          onCancel={toggleModal}
-          onConfirm={onDeleteProduct}
           cancelText={"No"}
           confirmText={"Yes"}
           title={"Delete Product"}
+          onClose={toggleModal}
+          onConfirm={onDeleteProduct}
           confirmDescription={`Are you sure, you want to clear quantity of product "${product.name}"`}
         />
       )}

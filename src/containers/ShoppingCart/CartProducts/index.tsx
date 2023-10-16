@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import React, { FC, Fragment, useState } from "react";
 
 import {
   applyColorFilter,
@@ -14,16 +14,21 @@ import DeleteCart from "./DeleteCart";
 import ColorFilter from "./ColorFilter";
 
 import "../style.css";
+import { ProductItemType } from "../shopping-cart-types";
 
-const CartProducts = ({ products }) => {
+type CartProductsType = {
+  products: Array<ProductItemType>
+}
+
+const CartProducts:FC<CartProductsType> = ({ products }) => {
   const [cartProducts, setCartProducts] = useState(products);
   const [colorFilter, setColorFilter] = useState("");
 
-  const onChangeFilter = (filterValue) => {
+  const onChangeFilter = (filterValue: string):void => {
     setColorFilter(filterValue);
   };
 
-  const onUpdateCart = (cartItems) => {
+  const onUpdateCart = (cartItems: Array<ProductItemType>):void => {
     setCartProducts(cartItems);
   };
 
@@ -43,7 +48,7 @@ const CartProducts = ({ products }) => {
 
           <div className="cart-products">
             <div className="cart-items-container">
-              {cartItems.map((product) => {
+              {cartItems.map((product: ProductItemType) => {
                 const { id, img, name, price, quantity, colour } = product;
                 return (
                   <div

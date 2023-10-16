@@ -1,8 +1,20 @@
+import React, { FC } from "react";
 import { Modal } from "antd";
-import React from "react";
 import "./style.css";
 
-const AntdModal = ({
+type AntdModalType = {
+  title?: string;
+
+  open: boolean;
+  modalClass?: string;
+  onClose: () => void;
+  className?: string;
+  closable?: boolean;
+  borderless?: boolean;
+  children: JSX.Element | Array<JSX.Element>;
+};
+
+const AntdModal:FC<AntdModalType> = ({
   title,
   children,
   open,
@@ -10,11 +22,13 @@ const AntdModal = ({
   onClose,
   className,
   closable,
-  borderless
+  borderless,
 }) => {
   return (
     <Modal
-      className={`custom-ant-modal ${modalClass} ${borderless ? "borderless-header" :""}`}
+      className={`custom-ant-modal ${modalClass} ${
+        borderless ? "borderless-header" : ""
+      }`}
       closable={closable || false}
       title={title && title}
       open={open}

@@ -49,14 +49,13 @@ const CartProducts:FC<CartProductsType> = ({ products }) => {
           />
 
           <div className="cart-products">
-            <div className="cart-items-container">
+            <div className="cart-items-container" data-testid={"cart-item"}>
               {cartItems.map((product: ProductItemType) => {
                 const { id, img, name, price, quantity, colour } = product;
                 return (
                   <div
                     className="flex gap-2 full-width cart-product-item"
                     key={id}
-                    data-testid={id}
                   >
                     <div className="image-container">
                       <img src={img} alt="itemImage" />

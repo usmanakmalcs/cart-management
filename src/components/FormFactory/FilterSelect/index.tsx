@@ -20,9 +20,11 @@ const FilterSelect: FC<FilterSelectType> = ({
           onChange={onChange}
           defaultValue={defaultValue || options[0].value}
           className={selectClass || ""}
+          data-testid="select"
+          value={defaultValue}
         >
           {options.map(({ label, value }, index) => (
-            <Option value={value} key={index}>
+            <Option value={value} key={index} >
               {label}
             </Option>
           ))}

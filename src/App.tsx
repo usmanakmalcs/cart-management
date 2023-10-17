@@ -1,13 +1,18 @@
-
 import React from "react";
 import ShoppingCartPage from "./pages/ShoppingCart";
-import './App.css';
+
+import "./App.css";
+import { QueryClient, QueryClientProvider } from "react-query";
+
+const queryClient = new QueryClient();
 
 function App() {
   return (
-    <div className="App">
-      <ShoppingCartPage />
-    </div>
+    <QueryClientProvider client={queryClient}>
+      <div className="App">
+        <ShoppingCartPage />
+      </div>
+    </QueryClientProvider>
   );
 }
 

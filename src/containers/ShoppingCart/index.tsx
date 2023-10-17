@@ -1,26 +1,25 @@
-import React, { FC } from "react";
+import { FC } from "react";
+import { useQuery } from "react-query";
 
-import useFetch from "../../hooks/useFetch";
 import CartProducts from "./CartProducts";
 import { prepareProducts } from "./shopping-cart-utils";
+import { fetchProducts } from "../../api/shopping-cart";
 
-const ShoppingCart:FC = () => {
+const ShoppingCart: FC = ():JSX.Element => {
   const {
-    data: products,
-    loading,
+    isLoading,
     error,
-  } = useFetch(
-    "https://my-json-server.typicode.com/benirvingplt/products/products"
-  );
+    data: products,
+  } = useQuery("products", fetchProducts);
 
   return (
     <div className="shopping-cart-container">
       <div className="cart-page-title mb-20" data-testid="heading">
         My Cart
       </div>
-      {loading && <div>Fetching Products...</div>}
+      {isLoading && <div>Fetching Products...</div>}
       {products && <CartProducts products={prepareProducts(products)} />}
-      {error && <p>{error}</p>}
+      {error && <p>An error has occured</p>}
     </div>
   );
 };

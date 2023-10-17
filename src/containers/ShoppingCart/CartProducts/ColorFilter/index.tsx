@@ -1,12 +1,13 @@
-import React from "react";
+import React, { FC } from "react";
 import FilterSelect from "../../../../components/FormFactory/FilterSelect";
+import { FilterSelectType } from "../../../../components/FormFactory/FilterSelect/filter-select-types";
 
-const ColorFilter = ({ options, defaultValue, onChange }) => {
+
+const ColorFilter:FC<FilterSelectType> = ({ options, defaultValue, onChange }) => {
   return (
     <div className="mb-20 flex align-center gap-2 justify-end">
       <div>Color Filter: </div>
       <FilterSelect
-        key={options}
         options={options}
         defaultValue={defaultValue}
         onChange={onChange}

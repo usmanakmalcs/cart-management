@@ -1,12 +1,26 @@
-import { useEffect, useRef, useState } from "react";
+import React, { FC, useEffect, useRef, useState } from "react";
 import Icon from "../../../../components/Icon";
 import { formatCurrency, makeDeepCopy } from "../../../../utils/common-utils";
 
 import "./style.css";
+import {
+  ProductItemType,
+  ProductsType,
+} from "../../../../types/shopping.cart.types";
 
-let timeoutRef = null;
+type ItemsQuantityViewType = {
+  product: ProductItemType;
+  cartProducts: ProductsType;
+  updateCart: (value: ProductsType) => void;
+};
 
-const ItemsQuantityView = ({ product, updateCart, cartProducts }) => {
+let timeoutRef: any;
+
+const ItemsQuantityView: FC<ItemsQuantityViewType> = ({
+  product,
+  updateCart,
+  cartProducts,
+}) => {
   const { quantity, price } = product;
   const [productQuantity, setProductQuantity] = useState(quantity);
 
@@ -23,7 +37,9 @@ const ItemsQuantityView = ({ product, updateCart, cartProducts }) => {
   const updateCartDetails = () => {
     timeoutRef = setTimeout(() => {
       const cartItems = makeDeepCopy(cartProducts);
-      const productIndex = cartItems.findIndex(({ id }) => id === product.id);
+      const productIndex = cartItems.findIndex(
+        (item: ProductItemType) => item.id === product.id
+      );
 
       cartItems[productIndex].quantity = quantityRef.current;
 
@@ -33,7 +49,7 @@ const ItemsQuantityView = ({ product, updateCart, cartProducts }) => {
     }, 400);
   };
 
-  const onChangeQuantity = (action) => {
+  const onChangeQuantity = (action: string) => {
     const itemQuantity =
       action === "minus" ? productQuantity - 1 : productQuantity + 1;
 

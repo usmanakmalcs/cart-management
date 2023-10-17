@@ -1,6 +1,14 @@
-import React from "react";
+import React, { FC } from "react";
 
-const FlexItemContent = ({
+type FlexItemContentType = {
+  label: string;
+  labelClass?: string;
+  content: any;
+  contentClass?: string;
+  className?: string;
+};
+
+const FlexItemContent: FC<FlexItemContentType> = ({
   label,
   labelClass,
   content,
@@ -11,9 +19,7 @@ const FlexItemContent = ({
     <div className={`flex-item-between flex-item-content ${className || ""}`}>
       <div className={labelClass || "text-sm secondary-color"}>{label}</div>
       {content && (
-        <div className={contentClass || "text-sm primary-black"}>
-          {content}
-        </div>
+        <div className={contentClass || "text-sm primary-black"}>{content}</div>
       )}
     </div>
   );

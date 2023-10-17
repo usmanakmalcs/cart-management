@@ -1,10 +1,12 @@
-import { Fragment, useState } from "react";
+import React, { FC, Fragment, useState } from "react";
 
 import {
   applyColorFilter,
   calculateTotal,
   colorFilterOptions,
 } from "../shopping-cart-utils";
+
+
 
 import { formatCurrency } from "../../../utils/common-utils";
 import FlexItemContent from "../../../components/FlexItemContent";
@@ -14,16 +16,21 @@ import DeleteCart from "./DeleteCart";
 import ColorFilter from "./ColorFilter";
 
 import "../style.css";
+import { ProductItemType } from "../../../types/shopping.cart.types";
 
-const CartProducts = ({ products }) => {
+type CartProductsType = {
+  products: Array<ProductItemType>
+}
+
+const CartProducts:FC<CartProductsType> = ({ products }) => {
   const [cartProducts, setCartProducts] = useState(products);
   const [colorFilter, setColorFilter] = useState("");
 
-  const onChangeFilter = (filterValue) => {
+  const onChangeFilter = (filterValue: string):void => {
     setColorFilter(filterValue);
   };
 
-  const onUpdateCart = (cartItems) => {
+  const onUpdateCart = (cartItems: Array<ProductItemType>):void => {
     setCartProducts(cartItems);
   };
 
@@ -42,14 +49,13 @@ const CartProducts = ({ products }) => {
           />
 
           <div className="cart-products">
-            <div className="cart-items-container">
-              {cartItems.map((product) => {
+            <div className="cart-items-container" data-testid={"cart-item"}>
+              {cartItems.map((product: ProductItemType) => {
                 const { id, img, name, price, quantity, colour } = product;
                 return (
                   <div
                     className="flex gap-2 full-width cart-product-item"
                     key={id}
-                    data-testid={id}
                   >
                     <div className="image-container">
                       <img src={img} alt="itemImage" />

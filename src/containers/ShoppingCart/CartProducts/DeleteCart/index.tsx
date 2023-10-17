@@ -2,12 +2,12 @@ import React, { FC, Fragment, useState } from "react";
 import Icon from "../../../../components/Icon";
 import { makeDeepCopy } from "../../../../utils/common-utils";
 import ConfirmationModal from "../../../../components/AntdModal/ConfirmationModal";
-import { ProductItemType } from "../../shopping-cart-types";
+import { ProductItemType, ProductsType } from "../../../../types/shopping.cart.types";
 
 type DeleteCartType = {
   product: ProductItemType;
-  cartProducts: Array<ProductItemType>;
-  updateCart: (value: Array<ProductItemType>) => void;
+  cartProducts: ProductsType;
+  updateCart: (value: ProductsType) => void;
 };
 
 const DeleteCart: FC<DeleteCartType> = ({

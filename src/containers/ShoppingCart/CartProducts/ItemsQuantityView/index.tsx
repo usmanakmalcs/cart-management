@@ -3,12 +3,15 @@ import Icon from "../../../../components/Icon";
 import { formatCurrency, makeDeepCopy } from "../../../../utils/common-utils";
 
 import "./style.css";
-import { ProductItemType } from "../../shopping-cart-types";
+import {
+  ProductItemType,
+  ProductsType,
+} from "../../../../types/shopping.cart.types";
 
 type ItemsQuantityViewType = {
   product: ProductItemType;
-  cartProducts: Array<ProductItemType>;
-  updateCart: (value: Array<ProductItemType>) => void;
+  cartProducts: ProductsType;
+  updateCart: (value: ProductsType) => void;
 };
 
 let timeoutRef: any;

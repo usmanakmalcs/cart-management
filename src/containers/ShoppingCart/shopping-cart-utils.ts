@@ -1,7 +1,7 @@
+import { ProductsType } from "../../types/shopping.cart.types";
 import { capitalize } from "../../utils/common-utils";
-import { ProductItemType } from "./shopping-cart-types";
 
-export const prepareProducts = (products: Array<ProductItemType>) => {
+export const prepareProducts = (products: ProductsType) => {
   return products.map((item) => ({
     ...item,
     quantity: 0,
@@ -9,14 +9,14 @@ export const prepareProducts = (products: Array<ProductItemType>) => {
   }));
 };
 
-export const calculateTotal = (products: Array<ProductItemType>) => {
+export const calculateTotal = (products: ProductsType) => {
   return products.reduce(
     (total, item) => total + item.quantity * item.price,
     0
   );
 };
 
-export const colorFilterOptions = (products: Array<ProductItemType>) => {
+export const colorFilterOptions = (products: ProductsType) => {
   const uniqueColors = Array.from(
     new Set(products.map(({ colour }) => colour))
   );
@@ -33,7 +33,7 @@ export const colorFilterOptions = (products: Array<ProductItemType>) => {
 
 export const applyColorFilter = (
   colorFilter: string,
-  products: Array<ProductItemType>
+  products: ProductsType
 ) => {
   if (!colorFilter) return products;
 

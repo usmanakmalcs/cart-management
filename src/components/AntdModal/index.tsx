@@ -1,18 +1,9 @@
 import React, { FC } from "react";
 import { Modal } from "antd";
 import "./style.css";
+import { AntdModalType } from "../../types/ant.modal.types";
 
-type AntdModalType = {
-  title?: string;
 
-  open: boolean;
-  modalClass?: string;
-  onClose: () => void;
-  className?: string;
-  closable?: boolean;
-  borderless?: boolean;
-  children: JSX.Element | Array<JSX.Element>;
-};
 
 const AntdModal:FC<AntdModalType> = ({
   title,

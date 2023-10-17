@@ -6,6 +6,8 @@ import {
   colorFilterOptions,
 } from "../shopping-cart-utils";
 
+
+
 import { formatCurrency } from "../../../utils/common-utils";
 import FlexItemContent from "../../../components/FlexItemContent";
 
@@ -14,7 +16,7 @@ import DeleteCart from "./DeleteCart";
 import ColorFilter from "./ColorFilter";
 
 import "../style.css";
-import { ProductItemType } from "../shopping-cart-types";
+import { ProductItemType } from "../../../types/shopping.cart.types";
 
 type CartProductsType = {
   products: Array<ProductItemType>

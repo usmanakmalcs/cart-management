@@ -3,7 +3,7 @@ import AntdModal from "..";
 
 import FlexButtons from "../../FlexButtons";
 import { Button } from "antd";
-import { AntdModalType } from "../ant-modal-types";
+import { AntdModalType } from "../../../types/ant.modal.types";
 
 type ConfirmationModalType = {
   confirmText: string;

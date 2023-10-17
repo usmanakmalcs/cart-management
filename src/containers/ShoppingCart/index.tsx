@@ -1,16 +1,20 @@
 import { FC } from "react";
 import { useQuery } from "react-query";
 
+import { fetchProducts } from "../../api/shopping-cart";
+import { ProductsType } from "../../types/shopping.cart.types";
+
 import CartProducts from "./CartProducts";
 import { prepareProducts } from "./shopping-cart-utils";
-import { fetchProducts } from "../../api/shopping-cart";
+import { ApiServiceErr } from "../../types/api.types";
+
 
 const ShoppingCart: FC = ():JSX.Element => {
   const {
     isLoading,
     error,
     data: products,
-  } = useQuery("products", fetchProducts);
+  } = useQuery<ProductsType, ApiServiceErr>("products", fetchProducts);
 
   return (
     <div className="shopping-cart-container">
@@ -19,7 +23,7 @@ const ShoppingCart: FC = ():JSX.Element => {
       </div>
       {isLoading && <div>Fetching Products...</div>}
       {products && <CartProducts products={prepareProducts(products)} />}
-      {error && <p>An error has occured</p>}
+      {error && <div>An Error Occured {error.message}</div>}
     </div>
   );
 };

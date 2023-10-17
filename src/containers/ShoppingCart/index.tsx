@@ -1,20 +1,11 @@
 import { FC } from "react";
-import { useQuery } from "react-query";
-
-import { fetchProducts } from "../../api/shopping-cart";
-import { ProductsType } from "../../types/shopping.cart.types";
+import { useProducts } from "../../api/cart.api";
 
 import CartProducts from "./CartProducts";
 import { prepareProducts } from "./shopping-cart-utils";
-import { ApiServiceErr } from "../../types/api.types";
 
-
-const ShoppingCart: FC = ():JSX.Element => {
-  const {
-    isLoading,
-    error,
-    data: products,
-  } = useQuery<ProductsType, ApiServiceErr>("products", fetchProducts);
+const ShoppingCart: FC = (): JSX.Element => {
+  const { isLoading, error, data: products } = useProducts();
 
   return (
     <div className="shopping-cart-container">

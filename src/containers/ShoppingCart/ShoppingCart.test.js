@@ -2,6 +2,7 @@ import {
   fireEvent,
   render,
   screen,
+  waitFor,
   waitForElementToBeRemoved,
   within,
 } from "@testing-library/react";
@@ -87,4 +88,31 @@ describe("Update Filter And Verify Results", () => {
 
     expect(productWithStoneColor).toBeNull();
   });
+});
+
+test("renders ProductList component and interacts with the cart", async () => {
+  render(<App />);
+
+  const productElement = screen.getByText(
+    "Black Sheet Strappy Textured Glitter Bodycon Dress"
+  );
+  expect(productElement).toBeInTheDocument();
+
+  const { getByText } = within(screen.getAllByTestId("product-quantity")[0]);
+  const initialQuantity = getByText("0");
+  expect(initialQuantity).toBeInTheDocument();
+
+  // Add a product to the cart
+  const addButtons = screen.getAllByTestId("add-to-cart");
+  fireEvent.click(addButtons[0]);
+
+  const updatedQuantity = getByText("1");
+  expect(updatedQuantity).toBeInTheDocument();
+
+  // Remove a product from the cart
+  const removeButtons = screen.getAllByTestId("remove-from-cart");
+  fireEvent.click(removeButtons[0]);
+
+  const removedQuantity = getByText("1");
+  expect(removedQuantity).toBeInTheDocument();
 });

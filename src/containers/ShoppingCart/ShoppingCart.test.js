@@ -109,7 +109,7 @@ test("renders ProductList component and interacts with the cart", async () => {
   const updatedQuantity = getByText("1");
   expect(updatedQuantity).toBeInTheDocument();
 
-  // Remove a product from the cart
+  // Remove a product from the cart (Having issue in it, expecting a quantity to 0 but it's not working here)
   const removeButtons = screen.getAllByTestId("remove-from-cart");
   fireEvent.click(removeButtons[0]);
 

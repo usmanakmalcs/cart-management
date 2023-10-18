@@ -70,17 +70,22 @@ const ItemsQuantityView: FC<ItemsQuantityViewType> = ({
       <div className="quantity-buttons">
         <Icon
           type={"minus"}
+          data-testid="remove-from-cart"
           className={quantity ? "pointer" : "disabled"}
           onClick={() => quantity && onChangeQuantity("minus")}
         />
 
-        <div className="quantity-box font-14-normal-400-lh-18">
+        <div
+          className="quantity-box font-14-normal-400-lh-18"
+          data-testid="product-quantity"
+        >
           {productQuantity}
         </div>
 
         <Icon
           type={"plus"}
           className={"pointer"}
+          data-testid="add-to-cart"
           onClick={() => onChangeQuantity("plus")}
         />
       </div>

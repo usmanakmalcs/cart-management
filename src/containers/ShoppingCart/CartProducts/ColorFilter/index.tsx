@@ -1,17 +1,27 @@
 import React, { FC } from "react";
+import { OptionItem } from "../../../../components/FormFactory/FilterSelect/filter-select-types";
 import FilterSelect from "../../../../components/FormFactory/FilterSelect";
-import { FilterSelectType } from "../../../../components/FormFactory/FilterSelect/filter-select-types";
 
+type ColorFilterType = {
+  options: Array<OptionItem>;
+  defaultValue: string;
+  onChange: (value: string) => void;
+};
 
-const ColorFilter:FC<FilterSelectType> = ({ options, defaultValue, onChange }) => {
+const ColorFilter: FC<ColorFilterType> = ({
+  options,
+  defaultValue,
+  onChange,
+}) => {
   return (
-    <div className="mb-20 flex align-center gap-2 justify-end">
-      <div>Color Filter: </div>
+    <div className="text-right mb-20">
       <FilterSelect
+        label="Filter by Color:"
+        htmlFor="colorFilter"
+        id="colorFilter"
+        onChange={onChange}
         options={options}
         defaultValue={defaultValue}
-        onChange={onChange}
-        selectClass={"full-width"}
       />
     </div>
   );

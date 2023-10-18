@@ -1,35 +1,29 @@
 import React, { FC } from "react";
-
-import { Select } from "antd";
-import "./style.css";
 import { FilterSelectType } from "./filter-select-types";
-
-const { Option } = Select;
+import './style.css';
 
 const FilterSelect: FC<FilterSelectType> = ({
-  filterClass,
+  id,
+  label,
+  htmlFor,
   options,
   onChange,
   defaultValue,
-  selectClass,
 }) => {
   return (
-    <div className={`filter-select ${filterClass}`}>
-      {options.length ? (
-        <Select
-          onChange={onChange}
-          defaultValue={defaultValue || options[0].value}
-          className={selectClass || ""}
-          data-testid="select"
-          value={defaultValue}
-        >
-          {options.map(({ label, value }, index) => (
-            <Option value={value} key={index} >
-              {label}
-            </Option>
-          ))}
-        </Select>
-      ) : null}
+    <div className="filter-select">
+      <label htmlFor={htmlFor}>{label}</label>
+      <select
+        id={id || "select"}
+        onChange={({ target }) => onChange(target.value)}
+        defaultValue={defaultValue}
+      >
+        {options.map((optionItem) => (
+          <option key={optionItem.value} value={optionItem.value}>
+            {optionItem.label}
+          </option>
+        ))}
+      </select>
     </div>
   );
 };

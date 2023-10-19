@@ -50,6 +50,8 @@ const ItemsQuantityView: FC<ItemsQuantityViewType> = ({
   };
 
   const onChangeQuantity = (action: string) => {
+    if(!productQuantity && action === "minus") return null;
+    
     const itemQuantity =
       action === "minus" ? productQuantity - 1 : productQuantity + 1;
 
@@ -72,7 +74,7 @@ const ItemsQuantityView: FC<ItemsQuantityViewType> = ({
           type={"minus"}
           data-testid="remove-from-cart"
           className={quantity ? "pointer" : "disabled"}
-          onClick={() => quantity && onChangeQuantity("minus")}
+          onClick={() => onChangeQuantity("minus")}
         />
 
         <div

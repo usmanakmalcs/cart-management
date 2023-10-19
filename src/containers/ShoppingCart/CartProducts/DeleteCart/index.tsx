@@ -31,9 +31,11 @@ const DeleteCart: FC<DeleteCartType> = ({
     updateCart(cartItems);
   };
 
+  if(!product.quantity) return null;
+  
   return (
     <Fragment>
-      <Icon type={"delete"} className={"pointer"} onClick={toggleModal} />
+      <Icon type={"delete"} className={"pointer"} onClick={toggleModal} data-testid="delete-cart-icon"/>
 
       {modal && (
         <ConfirmationModal

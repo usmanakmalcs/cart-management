@@ -6,6 +6,9 @@ import {
   waitForElementToBeRemoved,
   within,
 } from "@testing-library/react";
+
+import userEvent from "@testing-library/user-event";
+
 import App from "../../App";
 
 // Mock the fetch function to simulate API call
@@ -113,6 +116,64 @@ test("renders ProductList component and interacts with the cart", async () => {
   const removeButtons = screen.getAllByTestId("remove-from-cart");
   fireEvent.click(removeButtons[0]);
 
-  const removedQuantity = getByText("1");
+  const removedQuantity = getByText("0");
   expect(removedQuantity).toBeInTheDocument();
+});
+
+test("render DeleteCart Button", async () => {
+  render(<App />);
+
+  const productElement = screen.getByText(
+    "Black Sheet Strappy Textured Glitter Bodycon Dress"
+  );
+  expect(productElement).toBeInTheDocument();
+
+  const deleteIconQuery = screen.queryByTestId("delete-cart-icon");
+
+  expect(deleteIconQuery).not.toBeInTheDocument();
+
+  // Add a product to the cart
+  const addButtons = screen.getAllByTestId("add-to-cart");
+  userEvent.click(addButtons[0]);
+
+  // Verify Delete Cart Button
+  await waitFor(
+    () => {
+      const deleteAllCartButton = screen.getByTestId("delete-cart-icon");
+      expect(deleteAllCartButton).toBeInTheDocument();
+    },
+    { timeout: 1000 }
+  );
+  
+  const deleteAllCartButton = screen.getByTestId("delete-cart-icon");
+  userEvent.click(deleteAllCartButton);
+
+  // Open Confirmation Modal
+  await waitFor(
+    () => {
+      // Check that the Ant Design modal is displayed
+      const confirmationModal = screen.getByText(
+        `Are you sure, you want to clear quantity of product "Black Sheet Strappy Textured Glitter Bodycon Dress"`
+      );
+      expect(confirmationModal).toBeInTheDocument();
+    },
+    { timeout: 1000 }
+  );
+
+  const okButton = screen.getByText("Yes");
+  userEvent.click(okButton);
+
+  // Verify Quantity should be 0
+  await waitFor(() => {
+    const { getByText } = within(screen.getAllByTestId("product-quantity")[0]);
+    const updatedQuantity = getByText("0");
+    expect(updatedQuantity).toBeInTheDocument();
+  }, 1000);
+
+  // Close Confirmation Modal
+  const closedConfirmationModal = screen.queryByText(
+    `Are you sure, you want to clear quantity of product "Black Sheet Strappy Textured Glitter Bodycon Dress"`
+  );
+
+  expect(closedConfirmationModal).not.toBeInTheDocument();
 });

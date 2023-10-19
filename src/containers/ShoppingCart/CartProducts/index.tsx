@@ -6,8 +6,6 @@ import {
   colorFilterOptions,
 } from "../shopping-cart-utils";
 
-
-
 import { formatCurrency } from "../../../utils/common-utils";
 import FlexItemContent from "../../../components/FlexItemContent";
 
@@ -19,18 +17,18 @@ import "../style.css";
 import { ProductItemType } from "../../../types/shopping.cart.types";
 
 type CartProductsType = {
-  products: Array<ProductItemType>
-}
+  products: Array<ProductItemType>;
+};
 
-const CartProducts:FC<CartProductsType> = ({ products }) => {
+const CartProducts: FC<CartProductsType> = ({ products }) => {
   const [cartProducts, setCartProducts] = useState(products);
   const [colorFilter, setColorFilter] = useState("");
 
-  const onChangeFilter = (filterValue: string):void => {
+  const onChangeFilter = (filterValue: string): void => {
     setColorFilter(filterValue);
   };
 
-  const onUpdateCart = (cartItems: Array<ProductItemType>):void => {
+  const onUpdateCart = (cartItems: Array<ProductItemType>): void => {
     setCartProducts(cartItems);
   };
 
@@ -51,7 +49,7 @@ const CartProducts:FC<CartProductsType> = ({ products }) => {
           <div className="cart-products">
             <div className="cart-items-container" data-testid={"cart-item"}>
               {cartItems.map((product: ProductItemType) => {
-                const { id, img, name, price, quantity, colour } = product;
+                const { id, img, name, price, colour } = product;
                 return (
                   <div
                     className="flex gap-2 full-width cart-product-item"
@@ -67,13 +65,11 @@ const CartProducts:FC<CartProductsType> = ({ products }) => {
                         className={"mb-20"}
                         labelClass="weight-500 text-base primary-black"
                         content={
-                          quantity > 0 && (
-                            <DeleteCart
-                              product={product}
-                              updateCart={onUpdateCart}
-                              cartProducts={cartItems}
-                            />
-                          )
+                          <DeleteCart
+                            product={product}
+                            updateCart={onUpdateCart}
+                            cartProducts={cartItems}
+                          />
                         }
                       />
 
